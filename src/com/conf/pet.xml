@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC 
+"-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" 
+"http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="pet" namespace="/pet" extends="default">
+		<!-- 准备添加 跳转到add页面 -->
+		<action name="createPet" class="petAction" method="createPet">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result name="success">/admin/addpet.jsp</result>
+		</action>
+
+		<!-- 添加记录 跳转回create方法 -->
+		<action name="addPet" class="petAction" method="addPet">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result name="success" type="chain">createPet</result>
+		</action>
+
+		<!-- 修改记录 跳转回getALL方法 -->
+		<action name="updatePet" class="petAction" method="updatePet">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result name="success" type="chain">getAllPet</result>
+		</action>
+
+		<!-- 批量删除记录 跳转回getALL方法 -->
+		<action name="deletePetByIds" class="petAction" method="deletePetByIds">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result name="success" type="chain">getAllPet</result>
+			<result name="fail" type="chain">getAllPet</result>
+		</action>
+
+		<!-- 删除记录 跳转回getALL方法 -->
+		<action name="deletePet" class="petAction" method="deletePet">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result name="success" type="chain">getAllPet</result>
+			<result name="fail" type="chain">getAllPet</result>
+		</action>
+
+		<!-- 查询全部记录 跳转到list页面 -->
+		<action name="getAllPet" class="petAction" method="getAllPet">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result name="success">/admin/listpet.jsp</result>
+		</action>
+
+		<!-- 按主键查询 跳转到edit页面 为修改做准备 -->
+		<action name="getPetById" class="petAction" method="getPetById">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result name="success">/admin/editpet.jsp</result>
+		</action>
+
+		<!-- 按条件查询 跳转到query页面 -->
+		<action name="queryPetByCond" class="petAction" method="queryPetByCond">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result name="success">/admin/querypet.jsp</result>
+		</action>
+	</package>
+
+</struts>

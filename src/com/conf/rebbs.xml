@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC 
+"-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" 
+"http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="rebbs" namespace="/rebbs" extends="default">
+		<!-- 准备添加 跳转到add页面 -->
+		<action name="createRebbs" class="rebbsAction" method="createRebbs">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result name="success">/admin/addrebbs.jsp</result>
+		</action>
+
+		<!-- 添加记录 跳转回create方法 -->
+		<action name="addRebbs" class="rebbsAction" method="addRebbs">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result name="success" type="chain">createRebbs</result>
+		</action>
+
+		<!-- 修改记录 跳转回getALL方法 -->
+		<action name="updateRebbs" class="rebbsAction" method="updateRebbs">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result name="success" type="chain">getAllRebbs</result>
+		</action>
+
+		<!-- 批量删除记录 跳转回getALL方法 -->
+		<action name="deleteRebbsByIds" class="rebbsAction" method="deleteRebbsByIds">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result name="success" type="chain">getAllRebbs</result>
+			<result name="fail" type="chain">getAllRebbs</result>
+		</action>
+
+		<!-- 删除记录 跳转回getALL方法 -->
+		<action name="deleteRebbs" class="rebbsAction" method="deleteRebbs">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result name="success" type="chain">getAllRebbs</result>
+			<result name="fail" type="chain">getAllRebbs</result>
+		</action>
+
+		<!-- 查询全部记录 跳转到list页面 -->
+		<action name="getAllRebbs" class="rebbsAction" method="getAllRebbs">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result name="success">/admin/listrebbs.jsp</result>
+		</action>
+
+		<!-- 按主键查询 跳转到edit页面 为修改做准备 -->
+		<action name="getRebbsById" class="rebbsAction" method="getRebbsById">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result name="success">/admin/editrebbs.jsp</result>
+		</action>
+
+		<!-- 按条件查询 跳转到query页面 -->
+		<action name="queryRebbsByCond" class="rebbsAction" method="queryRebbsByCond">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result name="success">/admin/queryrebbs.jsp</result>
+		</action>
+	</package>
+
+</struts>

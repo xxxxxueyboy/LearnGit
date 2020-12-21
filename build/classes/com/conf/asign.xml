@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC 
+"-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" 
+"http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="asign" namespace="/asign" extends="default">
+		<!-- 准备添加 跳转到add页面 -->
+		<action name="createAsign" class="asignAction" method="createAsign">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result name="success">/admin/addasign.jsp</result>
+		</action>
+
+		<!-- 添加记录 跳转回create方法 -->
+		<action name="addAsign" class="asignAction" method="addAsign">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result name="success" type="chain">createAsign</result>
+		</action>
+
+		<!-- 修改记录 跳转回getALL方法 -->
+		<action name="updateAsign" class="asignAction" method="updateAsign">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result name="success" type="chain">getAllAsign</result>
+		</action>
+		
+		<action name="accept" class="asignAction" method="accept">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result name="success" type="chain">getAllAsign</result>
+		</action>
+		
+		<action name="refuse" class="asignAction" method="refuse">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result name="success" type="chain">getAllAsign</result>
+		</action>
+
+		<!-- 批量删除记录 跳转回getALL方法 -->
+		<action name="deleteAsignByIds" class="asignAction" method="deleteAsignByIds">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result name="success" type="chain">getAllAsign</result>
+			<result name="fail" type="chain">getAllAsign</result>
+		</action>
+
+		<!-- 删除记录 跳转回getALL方法 -->
+		<action name="deleteAsign" class="asignAction" method="deleteAsign">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result name="success" type="chain">getAllAsign</result>
+			<result name="fail" type="chain">getAllAsign</result>
+		</action>
+
+		<!-- 查询全部记录 跳转到list页面 -->
+		<action name="getAllAsign" class="asignAction" method="getAllAsign">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result name="success">/admin/listasign.jsp</result>
+		</action>
+
+		<!-- 按主键查询 跳转到edit页面 为修改做准备 -->
+		<action name="getAsignById" class="asignAction" method="getAsignById">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result name="success">/admin/editasign.jsp</result>
+		</action>
+
+		<!-- 按条件查询 跳转到query页面 -->
+		<action name="queryAsignByCond" class="asignAction" method="queryAsignByCond">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result name="success">/admin/queryasign.jsp</result>
+		</action>
+	</package>
+
+</struts>

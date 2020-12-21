@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.entity.Activities" table="activities" schema="SCOTT">
+		<id name="activitiesid" type="java.lang.String">
+			<column name="activitiesid" length="100" />
+			<generator class="uuid.hex"></generator>
+		</id>
+		<property name="title" type="java.lang.String">
+			<column name="title" length="50" />
+		</property>
+		<property name="contents" type="java.lang.String">
+			<column name="contents" length="50" />
+		</property>
+		<property name="addtime" type="java.lang.String">
+			<column name="addtime" length="50" />
+		</property>
+		<property name="hits" type="java.lang.String">
+			<column name="hits" length="50" />
+		</property>
+		<property name="num" type="java.lang.String">
+			<column name="num" length="50" />
+		</property>
+	</class>
+</hibernate-mapping>

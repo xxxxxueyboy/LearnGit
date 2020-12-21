@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.entity.Asign" table="asign" schema="SCOTT">
+		<id name="asignid" type="java.lang.String">
+			<column name="asignid" length="100" />
+			<generator class="uuid.hex"></generator>
+		</id>
+		<property name="usersid" type="java.lang.String">
+			<column name="usersid" length="50" />
+		</property>
+		<property name="activitiesid" type="java.lang.String">
+			<column name="activitiesid" length="50" />
+		</property>
+		<property name="addtime" type="java.lang.String">
+			<column name="addtime" length="50" />
+		</property>
+		<property name="memo" type="java.lang.String">
+			<column name="memo" length="50" />
+		</property>
+		<property name="status" type="java.lang.String">
+			<column name="status" length="50" />
+		</property>
+
+		<many-to-one name="users" column="usersid" class="com.entity.Users"
+			fetch="join" insert="false" update="false" lazy="false" />
+		<many-to-one name="activities" column="activitiesid"
+			class="com.entity.Activities" fetch="join" insert="false" update="false"
+			lazy="false" />
+	</class>
+</hibernate-mapping>

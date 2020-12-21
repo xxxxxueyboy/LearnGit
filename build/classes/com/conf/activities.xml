@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC 
+"-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" 
+"http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="activities" namespace="/activities" extends="default">
+		<!-- 准备添加 跳转到add页面 -->
+		<action name="createActivities" class="activitiesAction"
+			method="createActivities">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result name="success">/admin/addactivities.jsp</result>
+		</action>
+
+		<!-- 添加记录 跳转回create方法 -->
+		<action name="addActivities" class="activitiesAction" method="addActivities">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result name="success" type="chain">createActivities</result>
+		</action>
+
+		<!-- 修改记录 跳转回getALL方法 -->
+		<action name="updateActivities" class="activitiesAction"
+			method="updateActivities">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result name="success" type="chain">getAllActivities</result>
+		</action>
+
+		<!-- 批量删除记录 跳转回getALL方法 -->
+		<action name="deleteActivitiesByIds" class="activitiesAction"
+			method="deleteActivitiesByIds">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result name="success" type="chain">getAllActivities</result>
+			<result name="fail" type="chain">getAllActivities</result>
+		</action>
+
+		<!-- 删除记录 跳转回getALL方法 -->
+		<action name="deleteActivities" class="activitiesAction"
+			method="deleteActivities">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result name="success" type="chain">getAllActivities</result>
+			<result name="fail" type="chain">getAllActivities</result>
+		</action>
+
+		<!-- 查询全部记录 跳转到list页面 -->
+		<action name="getAllActivities" class="activitiesAction"
+			method="getAllActivities">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result name="success">/admin/listactivities.jsp</result>
+		</action>
+
+		<!-- 按主键查询 跳转到edit页面 为修改做准备 -->
+		<action name="getActivitiesById" class="activitiesAction"
+			method="getActivitiesById">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result name="success">/admin/editactivities.jsp</result>
+		</action>
+
+		<!-- 按条件查询 跳转到query页面 -->
+		<action name="queryActivitiesByCond" class="activitiesAction"
+			method="queryActivitiesByCond">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result name="success">/admin/queryactivities.jsp</result>
+		</action>
+	</package>
+
+</struts>

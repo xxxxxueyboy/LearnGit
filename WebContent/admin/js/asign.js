@@ -1,0 +1,1 @@
+function check(){if(document.myform.usersid.value==''){alert('请输入用户'); return false; }if(document.myform.activitiesid.value==''){alert('请输入义工活动'); return false; }if(document.myform.addtime.value==''){alert('请输入报名日期'); return false; }}

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC 
+"-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" 
+"http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="cate" namespace="/cate" extends="default">
+		<!-- 准备添加 跳转到add页面 -->
+		<action name="createCate" class="cateAction" method="createCate">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result name="success">/admin/addcate.jsp</result>
+		</action>
+
+		<!-- 添加记录 跳转回create方法 -->
+		<action name="addCate" class="cateAction" method="addCate">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result name="success" type="chain">createCate</result>
+		</action>
+
+		<!-- 修改记录 跳转回getALL方法 -->
+		<action name="updateCate" class="cateAction" method="updateCate">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result name="success" type="chain">getAllCate</result>
+		</action>
+
+		<!-- 批量删除记录 跳转回getALL方法 -->
+		<action name="deleteCateByIds" class="cateAction" method="deleteCateByIds">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result name="success" type="chain">getAllCate</result>
+			<result name="fail" type="chain">getAllCate</result>
+		</action>
+
+		<!-- 删除记录 跳转回getALL方法 -->
+		<action name="deleteCate" class="cateAction" method="deleteCate">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result name="success" type="chain">getAllCate</result>
+			<result name="fail" type="chain">getAllCate</result>
+		</action>
+
+		<!-- 查询全部记录 跳转到list页面 -->
+		<action name="getAllCate" class="cateAction" method="getAllCate">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result name="success">/admin/listcate.jsp</result>
+		</action>
+
+		<!-- 按主键查询 跳转到edit页面 为修改做准备 -->
+		<action name="getCateById" class="cateAction" method="getCateById">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result name="success">/admin/editcate.jsp</result>
+		</action>
+
+		<!-- 按条件查询 跳转到query页面 -->
+		<action name="queryCateByCond" class="cateAction" method="queryCateByCond">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result name="success">/admin/querycate.jsp</result>
+		</action>
+	</package>
+
+</struts>

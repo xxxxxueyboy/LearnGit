@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?><!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="index" namespace="/index" extends="default">
+		<action name="index" class="indexAction" method="index">
+			<result>/users/index.jsp</result>
+		</action>
+		<action name="exit" class="indexAction" method="exit">
+			<result type="chain">index</result>
+		</action>
+
+		<action name="preLogin" class="indexAction" method="preLogin">
+			<result>/users/login.jsp</result>
+		</action>
+		<action name="prePwd" class="indexAction" method="prePwd">
+			<interceptor-ref name="usersStack"></interceptor-ref>
+			<result>/users/editpwd.jsp</result>
+		</action>
+		<action name="preReg" class="indexAction" method="preReg">
+			<result>/users/register.jsp</result>
+		</action>
+		<action name="login" class="indexAction" method="login">
+			<result name="fail" type="chain">preLogin</result>
+			<result name="success" type="chain">usercenter</result>
+		</action>
+		<action name="reg" class="indexAction" method="reg">
+			<result type="chain">preLogin</result>
+		</action>
+
+		<action name="editPwd" class="indexAction" method="editPwd">
+			<interceptor-ref name="usersStack"></interceptor-ref>
+			<result type="chain">prePwd</result>
+			<result name="fail" type="chain">preLogin</result>
+		</action>
+
+		<action name="personal" class="indexAction" method="personal">
+			<interceptor-ref name="usersStack"></interceptor-ref>
+			<result type="chain">usercenter</result>
+		</action>
+
+		<action name="usercenter" class="indexAction" method="usercenter">
+			<interceptor-ref name="usersStack"></interceptor-ref>
+			<result>/users/usercenter.jsp</result>
+		</action>
+
+		<action name="article" class="indexAction" method="article">
+			<result>/users/article.jsp</result>
+		</action>
+		<action name="read" class="indexAction" method="read">
+			<result>/users/read.jsp</result>
+		</action>
+
+		<action name="activities" class="indexAction" method="activities">
+			<result>/users/activities.jsp</result>
+		</action>
+		<action name="readActivities" class="indexAction" method="readActivities">
+			<result>/users/readActivities.jsp</result>
+		</action>
+
+
+
+		<!-- 动物 -->
+		<action name="cate" class="indexAction" method="cate">
+			<result>/users/list.jsp</result>
+		</action>
+		<action name="query" class="indexAction" method="query">
+			<result>/users/list.jsp</result>
+		</action>
+		<action name="all" class="indexAction" method="all">
+			<result>/users/list.jsp</result>
+		</action>
+		<action name="detail" class="indexAction" method="detail">
+			<result>/users/detail.jsp</result>
+		</action>
+
+		<!-- 讨论区 -->
+		<action name="allbbs" class="indexAction" method="allbbs">
+			<result name="success">/users/bbs.jsp</result>
+		</action>
+
+		<action name="readbbs" class="indexAction" method="readbbs">
+			<result name="success">/users/readbbs.jsp</result>
+		</action>
+
+		<action name="addbbs" class="indexAction" method="addbbs">
+			<interceptor-ref name="usersStack"></interceptor-ref>
+			<result name="success" type="chain">allbbs</result>
+		</action>
+
+		<action name="repeat" class="indexAction" method="repeat">
+			<interceptor-ref name="usersStack"></interceptor-ref>
+			<result name="success" type="redirect">/index/readbbs.action?id=${rebbs.bbsid}
+			</result>
+		</action>
+		
+		
+		
+		
+		<action name="preApply" class="indexAction" method="preApply">
+			<interceptor-ref name="usersStack"></interceptor-ref>
+			<result name="success">/users/addApply.jsp</result>
+		</action>
+		<action name="addApply" class="indexAction" method="addApply">
+			<interceptor-ref name="usersStack"></interceptor-ref>
+			<result name="success" type="chain">myApply</result>
+		</action>
+		<action name="myApply" class="indexAction" method="myApply">
+			<interceptor-ref name="usersStack"></interceptor-ref>
+			<result name="success">/users/myapply.jsp</result>
+		</action>
+		
+		<action name="asign" class="indexAction" method="asign">
+			<interceptor-ref name="usersStack"></interceptor-ref>
+			<result name="success" type="chain">myasign</result>
+		</action>
+		<action name="myasign" class="indexAction" method="myasign">
+			<interceptor-ref name="usersStack"></interceptor-ref>
+			<result name="success">/users/myasign.jsp</result>
+		</action>
+		
+	</package>
+</struts> 
